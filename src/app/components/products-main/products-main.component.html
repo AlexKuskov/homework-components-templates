@@ -6,6 +6,8 @@
       (input)="search(searchInput)"
     >
   </div>
+  <button (click)="setListDescendant(true)">\/</button>
+  <button (click)="setListDescendant(false)">/\</button>
   <app-product-list
     [products] = filteredProducts
   >

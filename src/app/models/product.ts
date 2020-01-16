@@ -5,5 +5,5 @@ export interface Product {
   Url: string;
   Title: string;
   Description: string;
-  Ratings: number[];
+  Rating: number;
 }

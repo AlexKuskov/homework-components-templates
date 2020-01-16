@@ -6,9 +6,7 @@ export default [
     Url: 'https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393',
     Title: 'The Quantified Cactus: An Easy Plant Soil Moisture Sensor',
     Description: 'This project is a good learning project to get comfortable with soldering and programming an Arduino.',
-    Rating: [
-      3.5
-    ]
+    Rating: 3.5
   },
   {
     Id: 'jenlooper-light',
