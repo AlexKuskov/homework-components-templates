@@ -16,10 +16,12 @@ export class ProductsMainComponent implements OnInit {
   private favorites: Product[] = [];
 
   private value: string;
+  private isDescendant: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
+    this.setListDescendant(this.isDescendant);
   }
 
   search(inputEl: HTMLInputElement) {
@@ -43,6 +45,7 @@ export class ProductsMainComponent implements OnInit {
         return !this.favorites.includes(product);
       });
     }
+    this.setListDescendant(this.isDescendant);
 
     this.combineProductLists();
   }
@@ -53,6 +56,7 @@ export class ProductsMainComponent implements OnInit {
   }
 
   setListDescendant(isDescendant: boolean) {
+    this.isDescendant = isDescendant;
     this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {
       return isDescendant ?
         secondProduct.Rating - firstProduct.Rating :
