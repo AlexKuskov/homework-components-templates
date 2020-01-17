@@ -11,7 +11,7 @@ export class ProductsMainComponent implements OnInit {
 
   public products: Product[] = products;
   public filteredProducts: Product[] = products;
-  private combinedProducts: Product[] = products;
+  public combinedProducts: Product[] = products;
   private favorites: Product[] = [];
 
   private value: string;
