@@ -9,7 +9,8 @@
   <button (click)="setListDescendant(true)">\/</button>
   <button (click)="setListDescendant(false)">/\</button>
   <app-product-list
-    [products] = filteredProducts
+    [products] = combinedProducts
+    (updateFavorites)="updateFavoritesList($event)"
   >
   </app-product-list>
 </div>

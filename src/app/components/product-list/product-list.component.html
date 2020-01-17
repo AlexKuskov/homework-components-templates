@@ -1,15 +1,17 @@
 <div class="product-list-wrap">
   <ul class="product-list">
     <li
-      *ngFor="let product of products; let i = index;"
+      *ngFor="let product of products"
       class="product"
     >
       <img
         src="{{product.img}}"
         alt="product.Title"
       >
-      <button>Add to favorites</button>
-      <button>Remove from favorites</button>
+      <button *ngIf="isFavorite(product); else elseRemoveButton" (click)="addFavoriteProduct(product)">Add to favorites</button>
+      <ng-template #elseRemoveButton>
+        <button (click)="removeFavoriteProduct(product)">Remove from favorites</button>
+      </ng-template>
       <h2>{{product.Title}}</h2>
       <p>{{product.Description}}</p>
       <a href="{{product.Url}}">Go to product page</a>

@@ -9,26 +9,57 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductsMainComponent implements OnInit {
 
-  public products = products;
+  public products: Product[] = products;
 
-  public filteredProducts = products;
+  public filteredProducts: Product[] = products;
+  private combinedProducts: Product[] = products;
+  private favorites: Product[] = [];
+
+  private value: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  search(inputEl) {
-    const value = inputEl.value;
-    this.filteredProducts = this.products.filter(product => product.Title.toLowerCase().match(value.toLowerCase()));
+  search(inputEl: HTMLInputElement) {
+    this.value = inputEl.value;
+    this.filteredProducts = this.products.filter(product => {
+      return product.Title.toLowerCase().match(this.value.toLowerCase()) && !this.favorites.includes(product);
+    });
+
+    this.combineProductLists();
+  }
+
+  updateFavoritesList(favorites: Product[]) {
+    this.favorites = favorites;
+
+    if (this.value) {
+      this.filteredProducts = this.products.filter(product => {
+        return product.Title.toLowerCase().match(this.value.toLowerCase()) && !this.favorites.includes(product);
+      });
+    } else {
+      this.filteredProducts = this.products.filter(product => {
+        return !this.favorites.includes(product);
+      });
+    }
+
+    this.combineProductLists();
+  }
+
+  combineProductLists() {
+    this.combinedProducts = [];
+    this.combinedProducts.push(...this.favorites, ...this.filteredProducts);
   }
 
   setListDescendant(isDescendant: boolean) {
-    this.filteredProducts = this.products.sort((firstProduct: Product, secondProduct: Product) => {
+    this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {
       return isDescendant ?
-        secondProduct.Rating - firstProduct.Rating:
+        secondProduct.Rating - firstProduct.Rating :
         firstProduct.Rating - secondProduct.Rating;
     });
+
+    this.combineProductLists();
   }
 
 }
