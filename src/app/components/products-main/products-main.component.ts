@@ -10,7 +10,6 @@ import { Product } from 'src/app/models/product';
 export class ProductsMainComponent implements OnInit {
 
   public products: Product[] = products;
-
   public filteredProducts: Product[] = products;
   private combinedProducts: Product[] = products;
   private favorites: Product[] = [];
@@ -21,33 +20,32 @@ export class ProductsMainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.setListDescendant(this.isDescendant);
+    this.setListOrder(this.isDescendant);
   }
 
   search(inputEl: HTMLInputElement) {
     this.value = inputEl.value;
-    this.filteredProducts = this.products.filter(product => {
-      return product.Title.toLowerCase().match(this.value.toLowerCase()) && !this.favorites.includes(product);
-    });
 
+    this.filterProductList();
     this.combineProductLists();
   }
 
-  updateFavoritesList(favorites: Product[]) {
+  updateProductList(favorites: Product[]) {
     this.favorites = favorites;
 
-    if (this.value) {
-      this.filteredProducts = this.products.filter(product => {
-        return product.Title.toLowerCase().match(this.value.toLowerCase()) && !this.favorites.includes(product);
-      });
-    } else {
-      this.filteredProducts = this.products.filter(product => {
-        return !this.favorites.includes(product);
-      });
-    }
-    this.setListDescendant(this.isDescendant);
-
+    this.filterProductList();
+    this.setListOrder(this.isDescendant);
     this.combineProductLists();
+  }
+
+  filterProductList() {
+    this.filteredProducts = this.products.filter(product => {
+      let isMatch = true;
+
+      if (this.value) isMatch = !!product.Title.toLowerCase().match(this.value.toLowerCase());
+
+      return isMatch && !this.favorites.includes(product);
+    });
   }
 
   combineProductLists() {
@@ -55,8 +53,9 @@ export class ProductsMainComponent implements OnInit {
     this.combinedProducts.push(...this.favorites, ...this.filteredProducts);
   }
 
-  setListDescendant(isDescendant: boolean) {
+  setListOrder(isDescendant: boolean) {
     this.isDescendant = isDescendant;
+
     this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {
       return isDescendant ?
         secondProduct.Rating - firstProduct.Rating :

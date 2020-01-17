@@ -6,11 +6,11 @@
       (input)="search(searchInput)"
     >
   </div>
-  <button class="btn" (click)="setListDescendant(true)">\/</button>
-  <button class="btn" (click)="setListDescendant(false)">/\</button>
+  <button class="btn" (click)="setListOrder(true)">\/</button>
+  <button class="btn" (click)="setListOrder(false)">/\</button>
   <app-product-list
-    [products] = combinedProducts
-    (updateFavorites)="updateFavoritesList($event)"
+    [products]=combinedProducts
+    (updateFavorites)="updateProductList($event)"
   >
   </app-product-list>
 </div>
