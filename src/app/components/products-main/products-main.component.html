@@ -6,8 +6,8 @@
       (input)="search(searchInput)"
     >
   </div>
-  <button (click)="setListDescendant(true)">\/</button>
-  <button (click)="setListDescendant(false)">/\</button>
+  <button class="btn" (click)="setListDescendant(true)">\/</button>
+  <button class="btn" (click)="setListDescendant(false)">/\</button>
   <app-product-list
     [products] = combinedProducts
     (updateFavorites)="updateFavoritesList($event)"
