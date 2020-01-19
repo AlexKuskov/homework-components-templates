@@ -13,7 +13,7 @@ export class ProductListComponent {
   @Input() favorites: Product[];
   @Output() updateFavorites = new EventEmitter<Product[]>();
 
-  emitFavoritesList(favorites: Product[]) {
+  private emitFavoritesList(favorites: Product[]) {
     this.updateFavorites.emit(favorites);
   }
 

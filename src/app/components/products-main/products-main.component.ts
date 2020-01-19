@@ -9,9 +9,9 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductsMainComponent implements OnInit {
 
-  public products: Product[] = products;
-  public filteredProducts: Product[] = products;
-  private favorites: Product[] = []; // products[0], products[1]
+  private products: Product[] = products;
+  private filteredProducts: Product[] = products;
+  private favorites: Product[] = [];
 
   private searchValue: string;
   private isDescendant: boolean = true;
@@ -20,20 +20,20 @@ export class ProductsMainComponent implements OnInit {
     this.setListOrder(this.isDescendant);
   }
 
-  search(searchValue: string) {
+  private search(searchValue: string) {
     this.searchValue = searchValue;
 
     this.filterProductList();
   }
 
-  updateFavoritesList(favorites: Product[]) {
+  private updateFavoritesList(favorites: Product[]) {
     this.favorites = favorites;
 
     this.filterProductList();
     this.setListOrder(this.isDescendant);
   }
 
-  filterProductList() {
+  private filterProductList() {
     this.filteredProducts = this.products.filter(product => {
       const isFavorite = this.favorites.includes(product);
 
@@ -45,7 +45,7 @@ export class ProductsMainComponent implements OnInit {
     });
   }
 
-  setListOrder(isDescendant: boolean) {
+  private setListOrder(isDescendant: boolean) {
     this.isDescendant = isDescendant;
 
     this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {

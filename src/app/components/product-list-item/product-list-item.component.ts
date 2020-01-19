@@ -13,17 +13,17 @@ export class ProductListItemComponent {
   @Input() favorites: Product[] = [];
   @Output() updateFavorites = new EventEmitter<Product[]>();
 
-  addFavoriteProduct(product: Product) {
+  private addFavoriteProduct(product: Product) {
     this.favorites.push(product);
     this.updateFavorites.emit(this.favorites);
   }
 
-  removeFavoriteProduct(product: Product) {
+  private removeFavoriteProduct(product: Product) {
     this.favorites.splice(this.favorites.indexOf(product), 1);
     this.updateFavorites.emit(this.favorites);
   }
 
-  isFavorite(product: Product) {
+  private isFavorite(product: Product) {
     return this.favorites.includes(product);
   }
 
