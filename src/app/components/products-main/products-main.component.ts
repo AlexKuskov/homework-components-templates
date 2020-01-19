@@ -26,7 +26,7 @@ export class ProductsMainComponent implements OnInit {
     this.filterProductList();
   }
 
-  private updateFavoritesList(favorites: Product[]) {
+  private updateFavoritesAndProducts(favorites: Product[]) {
     this.favorites = favorites;
 
     this.filterProductList();
