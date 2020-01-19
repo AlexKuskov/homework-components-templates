@@ -38,11 +38,13 @@ export class ProductsMainComponent implements OnInit {
 
   filterProductList() {
     this.filteredProducts = this.products.filter(product => {
-      let isMatch = true;
+      const isFavorite = this.favorites.includes(product);
 
-      if (this.searchValue) isMatch = !!product.Title.toLowerCase().match(this.searchValue.toLowerCase());
+      if (this.searchValue) {
+        return product.Title.toLowerCase().match(this.searchValue.toLowerCase()) && !isFavorite;
+      }
 
-      return isMatch && !this.favorites.includes(product);
+      return !isFavorite;
     });
   }
 
