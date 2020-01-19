@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/product';
 
@@ -10,22 +10,23 @@ import { Product } from '../../models/product';
 export class ProductListComponent {
 
   @Input() products: Product[];
+  @Input() favorites: Product[];
   @Output() updateFavorites = new EventEmitter<Product[]>();
 
-  private favorites: Product[] = [];
+  // private favorites: Product[] = [];
 
-  addFavoriteProduct(product: Product) {
-    this.favorites.push(product);
-    this.updateFavorites.emit(this.favorites);
-  }
+  // addFavoriteProduct(product: Product) {
+  //   this.favorites.push(product);
+  //   this.updateFavorites.emit(this.favorites);
+  // }
 
-  removeFavoriteProduct(product: Product) {
-    this.favorites.splice(this.favorites.indexOf(product), 1);
-    this.updateFavorites.emit(this.favorites);
-  }
+  // removeFavoriteProduct(product: Product) {
+  //   this.favorites.splice(this.favorites.indexOf(product), 1);
+  //   this.updateFavorites.emit(this.favorites);
+  // }
 
-  isFavorite(product: Product) {
-    return !this.favorites.includes(product);
-  }
+  // isFavorite(product: Product) {
+  //   return !this.favorites.includes(product);
+  // }
 
 }

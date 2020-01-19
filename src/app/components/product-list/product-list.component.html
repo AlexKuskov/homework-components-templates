@@ -1,27 +1,32 @@
-<div class="product-list-wrap">
-  <ul class="product-list">
-    <li
-      *ngFor="let product of products"
-      class="product"
+<ul class="product-list">
+  <!-- Favorites -->
+  <app-product-list-item [products]=favorites></app-product-list-item>
+
+  <!-- FilteredProducts -->
+  <app-product-list-item [products]=products></app-product-list-item>
+
+
+  <!-- <li
+    *ngFor="let product of products"
+    class="product"
+  >
+    <img
+      src="{{product.img}}"
+      alt="product.Title"
     >
-      <img
-        src="{{product.img}}"
-        alt="product.Title"
-      >
-      <button
-        class="btn"
-        *ngIf="isFavorite(product); else elseRemoveButton"
-        (click)="addFavoriteProduct(product)"
-      >
-        Add to favorites
-      </button>
-      <ng-template #elseRemoveButton>
-        <button class="btn btn--remove" (click)="removeFavoriteProduct(product)">Remove from favorites</button>
-      </ng-template>
-      <h2>{{product.Title}}</h2>
-      <p>{{product.Description}}</p>
-      <a href="{{product.Url}}">Go to product page</a>
-      <p class="rating">Rating: {{product.Rating}}</p>
-    </li>
-  </ul>
-</div>
+    <button
+      class="btn"
+      *ngIf="isFavorite(product); else elseRemoveButton"
+      (click)="addFavoriteProduct(product)"
+    >
+      Add to favorites
+    </button>
+    <ng-template #elseRemoveButton>
+      <button class="btn btn--remove" (click)="removeFavoriteProduct(product)">Remove from favorites</button>
+    </ng-template>
+    <h2>{{product.Title}}</h2>
+    <p>{{product.Description}}</p>
+    <a href="{{product.Url}}">Go to product page</a>
+    <p class="rating">Rating: {{product.Rating}}</p>
+  </li> -->
+</ul>

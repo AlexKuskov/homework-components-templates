@@ -9,7 +9,8 @@
   <button class="btn" (click)="setListOrder(true)">\/</button>
   <button class="btn" (click)="setListOrder(false)">/\</button>
   <app-product-list
-    [products]=combinedProducts
+    [favorites]=favorites
+    [products]=filteredProducts
     (updateFavorites)="updateProductList($event)"
   >
   </app-product-list>
