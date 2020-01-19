@@ -25,7 +25,7 @@ export class ProductListItemComponent {
   }
 
   isFavorite(product: Product) {
-    return !this.favorites.includes(product);
+    return this.favorites.includes(product);
   }
 
 }

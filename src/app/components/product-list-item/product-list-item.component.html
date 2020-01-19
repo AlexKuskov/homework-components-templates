@@ -7,16 +7,18 @@
     src="{{product.img}}"
     alt="product.Title"
   >
+
   <button
-    class="btn"
-    *ngIf="isFavorite(product); else elseRemoveButton"
-    (click)="addFavoriteProduct(product)"
+    class="btn btn--remove"
+    *ngIf="isFavorite(product); else elseAddButton"
+    (click)="removeFavoriteProduct(product)"
   >
-    Add to favorites
+    Remove from favorites
   </button>
-  <ng-template #elseRemoveButton>
-    <button class="btn btn--remove" (click)="removeFavoriteProduct(product)">Remove from favorites</button>
+  <ng-template #elseAddButton>
+    <button class="btn" (click)="addFavoriteProduct(product)">Add to favorites</button>
   </ng-template>
+
   <h2>{{product.Title}}</h2>
   <p>{{product.Description}}</p>
   <a href="{{product.Url}}">Go to product page</a>
