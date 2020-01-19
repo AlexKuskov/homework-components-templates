@@ -10,9 +10,8 @@ import { Product } from '../../models/product';
 export class ProductListItemComponent {
 
   @Input() products: Product[];
+  @Input() favorites: Product[] = [];
   @Output() updateFavorites = new EventEmitter<Product[]>();
-
-  private favorites: Product[] = [];
 
   addFavoriteProduct(product: Product) {
     this.favorites.push(product);

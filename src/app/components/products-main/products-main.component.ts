@@ -11,7 +11,6 @@ export class ProductsMainComponent implements OnInit {
 
   public products: Product[] = products;
   public filteredProducts: Product[] = products;
-  public combinedProducts: Product[] = products;
   private favorites: Product[] = []; // products[0], products[1]
 
   private searchValue: string;
@@ -25,15 +24,13 @@ export class ProductsMainComponent implements OnInit {
     this.searchValue = searchValue;
 
     this.filterProductList();
-    this.combineProductLists();
   }
 
-  updateProductList(favorites: Product[]) {
+  updateFavoritesList(favorites: Product[]) {
     this.favorites = favorites;
 
     this.filterProductList();
     this.setListOrder(this.isDescendant);
-    this.combineProductLists();
   }
 
   filterProductList() {
@@ -48,10 +45,6 @@ export class ProductsMainComponent implements OnInit {
     });
   }
 
-  combineProductLists() {
-    this.combinedProducts = [...this.favorites, ...this.filteredProducts];
-  }
-
   setListOrder(isDescendant: boolean) {
     this.isDescendant = isDescendant;
 
@@ -60,8 +53,6 @@ export class ProductsMainComponent implements OnInit {
         secondProduct.Rating - firstProduct.Rating :
         firstProduct.Rating - secondProduct.Rating;
     });
-
-    this.combineProductLists();
   }
 
 }
