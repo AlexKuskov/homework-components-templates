@@ -12,17 +12,17 @@ export class ProductsMainComponent implements OnInit {
   public products: Product[] = products;
   public filteredProducts: Product[] = products;
   public combinedProducts: Product[] = products;
-  private favorites: Product[] = [ products[0], products[1] ];
+  private favorites: Product[] = [ ]; // products[0], products[1]
 
-  private value: string;
+  private searchValue: string;
   private isDescendant: boolean = true;
 
   ngOnInit() {
     this.setListOrder(this.isDescendant);
   }
 
-  search(inputEl: HTMLInputElement) {
-    this.value = inputEl.value;
+  search(searchValue: string) {
+    this.searchValue = searchValue;
 
     this.filterProductList();
     this.combineProductLists();
@@ -40,7 +40,7 @@ export class ProductsMainComponent implements OnInit {
     this.filteredProducts = this.products.filter(product => {
       let isMatch = true;
 
-      if (this.value) isMatch = !!product.Title.toLowerCase().match(this.value.toLowerCase());
+      if (this.searchValue) isMatch = !!product.Title.toLowerCase().match(this.searchValue.toLowerCase());
 
       return isMatch && !this.favorites.includes(product);
     });

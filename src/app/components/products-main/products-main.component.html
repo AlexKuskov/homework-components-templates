@@ -2,8 +2,7 @@
   <div class="search">
     <input
       type="text"
-      #searchInput
-      (input)="search(searchInput)"
+      (input)="search($event.target.value)"
     >
   </div>
   <button class="btn" (click)="setListOrder(true)">\/</button>
