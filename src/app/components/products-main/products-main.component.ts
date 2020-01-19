@@ -12,7 +12,7 @@ export class ProductsMainComponent implements OnInit {
   public products: Product[] = products;
   public filteredProducts: Product[] = products;
   public combinedProducts: Product[] = products;
-  private favorites: Product[] = [ ]; // products[0], products[1]
+  private favorites: Product[] = []; // products[0], products[1]
 
   private searchValue: string;
   private isDescendant: boolean = true;
@@ -49,8 +49,7 @@ export class ProductsMainComponent implements OnInit {
   }
 
   combineProductLists() {
-    this.combinedProducts = [];
-    this.combinedProducts.push(...this.favorites, ...this.filteredProducts);
+    this.combinedProducts = [...this.favorites, ...this.filteredProducts];
   }
 
   setListOrder(isDescendant: boolean) {
