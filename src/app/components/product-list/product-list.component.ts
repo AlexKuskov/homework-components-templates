@@ -7,17 +7,12 @@ import { Product } from '../../models/product';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
 
   @Input() products: Product[];
   @Output() updateFavorites = new EventEmitter<Product[]>();
 
   private favorites: Product[] = [];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   addFavoriteProduct(product: Product) {
     this.favorites.push(product);

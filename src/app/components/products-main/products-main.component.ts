@@ -17,8 +17,6 @@ export class ProductsMainComponent implements OnInit {
   private value: string;
   private isDescendant: boolean = true;
 
-  constructor() { }
-
   ngOnInit() {
     this.setListOrder(this.isDescendant);
   }
