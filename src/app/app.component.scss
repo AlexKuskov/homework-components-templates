@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.search {
-  display: inline-block;
-}
-
 .btn {
   background-color: transparent;
   border: 3px solid #0fce0f;
@@ -16,13 +12,4 @@
 
 .btn--remove {
   border-color: #ff0000;
-}
-
-.rating {
-  display: inline-block;
-  color: #286d28;
-  border-radius: 100%;
-  border: 2px solid #0fce0f;
-  padding: .5%;
-  transform: translateX(300px);
 }
