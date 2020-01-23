@@ -13,8 +13,8 @@ export class ProductListComponent implements OnInit {
   @Output() updateFavorites = new EventEmitter<Product[]>();
 
   private products: Product[] = products;
-  private filteredProducts: Product[] = products;
-  private favorites: Product[] = [];
+  public filteredProducts: Product[] = products;
+  public favorites: Product[] = [];
 
   private searchValue: string;
   public isDescendant: boolean = true;
@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
     this.filterProductList();
   }
 
-  private updateFavoritesAndProducts(favorites: Product[]) {
+  public updateFavoritesAndProducts(favorites: Product[]) {
     this.favorites = favorites;
 
     this.filterProductList();

@@ -13,11 +13,11 @@ export class ProductsMainComponent {
   @ViewChild(ProductListComponent, { static: false })
   productListComponent: ProductListComponent;
 
-  private search(searchValue: string) {
+  public search(searchValue: string) {
     this.productListComponent.search(searchValue);
   }
 
-  private setListOrder(isDescendant: boolean) {
+  public setListOrder(isDescendant: boolean) {
     this.productListComponent.isDescendant = isDescendant;
     this.productListComponent.orderList();
   }
