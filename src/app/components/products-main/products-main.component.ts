@@ -1,58 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import products from '../../constants/products';
+import { Component, ViewChild } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import products from '../../constants/products';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-products-main',
   templateUrl: './products-main.component.html',
   styleUrls: ['./products-main.component.scss']
 })
-export class ProductsMainComponent implements OnInit {
+export class ProductsMainComponent {
 
-  private products: Product[] = products;
-  private filteredProducts: Product[] = products;
-  private favorites: Product[] = [];
-
-  private searchValue: string;
-  private isDescendant: boolean = true;
-
-  ngOnInit() {
-    this.setListOrder(this.isDescendant);
-  }
+  @ViewChild(ProductListComponent, { static: false })
+  productListComponent: ProductListComponent;
 
   private search(searchValue: string) {
-    this.searchValue = searchValue;
-
-    this.filterProductList();
-  }
-
-  private updateFavoritesAndProducts(favorites: Product[]) {
-    this.favorites = favorites;
-
-    this.filterProductList();
-    this.setListOrder(this.isDescendant);
-  }
-
-  private filterProductList() {
-    this.filteredProducts = this.products.filter(product => {
-      const isFavorite = this.favorites.includes(product);
-
-      if (this.searchValue) {
-        return product.Title.toLowerCase().match(this.searchValue.toLowerCase()) && !isFavorite;
-      }
-
-      return !isFavorite;
-    });
+    this.productListComponent.search(searchValue);
   }
 
   private setListOrder(isDescendant: boolean) {
-    this.isDescendant = isDescendant;
-
-    this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {
-      return isDescendant ?
-        secondProduct.Rating - firstProduct.Rating :
-        firstProduct.Rating - secondProduct.Rating;
-    });
+    this.productListComponent.isDescendant = isDescendant;
+    this.productListComponent.orderList();
   }
 
 }

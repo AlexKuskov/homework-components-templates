@@ -2,11 +2,11 @@
   <app-product-list-item
     [products]=favorites
     [favorites]=favorites
-    (updateFavorites)="emitFavoritesList($event)">
+    (updateFavorites)="updateFavoritesAndProducts($event)">
   </app-product-list-item>
 
   <app-product-list-item
-    [products]=products
-    (updateFavorites)="emitFavoritesList($event)">
+    [products]=filteredProducts
+    (updateFavorites)="updateFavoritesAndProducts($event)">
   </app-product-list-item>
 </ul>
