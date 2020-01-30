@@ -7,5 +7,5 @@
   </div>
   <button class="btn" (click)="setListOrder(true)">\/</button>
   <button class="btn" (click)="setListOrder(false)">/\</button>
-  <app-product-list></app-product-list>
+  <app-product-list [listOrder]="isProductListDescendant"></app-product-list>
 </div>

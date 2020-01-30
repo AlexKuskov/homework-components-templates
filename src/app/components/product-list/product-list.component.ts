@@ -17,15 +17,15 @@ export class ProductListComponent implements OnInit {
   public favorites: Product[] = [];
 
   private searchValue: string;
-  public isDescendant: boolean = true;
+  private _listOrder: boolean = true;
 
   ngOnInit() {
     this.orderList();
   }
 
-  public orderList() {
+  private orderList() {
     this.filteredProducts = this.filteredProducts.sort((firstProduct: Product, secondProduct: Product) => {
-      return this.isDescendant ?
+      return this._listOrder ?
         secondProduct.Rating - firstProduct.Rating :
         firstProduct.Rating - secondProduct.Rating;
     });
@@ -54,4 +54,11 @@ export class ProductListComponent implements OnInit {
       return !isFavorite;
     });
   }
+
+  @Input()
+  set listOrder(isProductListDescendant: boolean) {
+    this._listOrder = isProductListDescendant;
+    this.orderList();
+  }
+
 }
