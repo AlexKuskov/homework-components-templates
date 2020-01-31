@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
 import products from '../../constants/products';
 import { Product } from '../../models/product';
 
@@ -9,8 +8,6 @@ import { Product } from '../../models/product';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
-  @Output() updateFavorites = new EventEmitter<Product[]>();
 
   private products: Product[] = products;
   public filteredProducts: Product[] = products;
@@ -36,13 +33,6 @@ export class ProductListComponent implements OnInit {
     this.filterProductList();
   }
 
-  public updateFavoritesAndProducts(favorites: Product[]) {
-    this.favorites = favorites;
-
-    this.filterProductList();
-    this.orderList();
-  }
-
   private filterProductList() {
     this.filteredProducts = this.products.filter(product => {
       const isFavorite = this.favorites.includes(product);
@@ -53,6 +43,23 @@ export class ProductListComponent implements OnInit {
 
       return !isFavorite;
     });
+  }
+
+  public addFavoriteAndRefreshList(favoriteProduct: Product) {
+    this.favorites.push(favoriteProduct);
+
+    this.refreshProductList();
+  }
+
+  public removeFavoriteAndRefreshList(favoriteProduct: Product) {
+    this.favorites.splice(this.favorites.indexOf(favoriteProduct), 1);
+
+    this.refreshProductList();
+  }
+
+  private refreshProductList() {
+    this.filterProductList();
+    this.orderList();
   }
 
   @Input()

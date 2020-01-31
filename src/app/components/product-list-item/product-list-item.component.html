@@ -1,7 +1,4 @@
-<li
-  *ngFor="let product of products"
-  class="product"
->
+<li class="product">
   <img
     class="product__img"
     src="{{product.img}}"
@@ -10,13 +7,13 @@
 
   <button
     class="btn btn--remove"
-    *ngIf="isFavorite(product); else elseAddButton"
-    (click)="removeFavoriteProduct(product)"
+    *ngIf="isFavorite; else elseAddButton"
+    (click)="removeFavorite(product)"
   >
     Remove from favorites
   </button>
   <ng-template #elseAddButton>
-    <button class="btn" (click)="addFavoriteProduct(product)">Add to favorites</button>
+    <button class="btn" (click)="addFavorite(product)">Add to favorites</button>
   </ng-template>
 
   <h2>{{product.Title}}</h2>

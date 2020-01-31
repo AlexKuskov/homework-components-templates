@@ -9,22 +9,19 @@ import { Product } from '../../models/product';
 })
 export class ProductListItemComponent {
 
-  @Input() products: Product[];
-  @Input() favorites: Product[] = [];
-  @Output() updateFavorites = new EventEmitter<Product[]>();
+  @Input() isFavorite: boolean = false;
+  @Input() product: Product;
 
-  public addFavoriteProduct(product: Product) {
-    this.favorites.push(product);
-    this.updateFavorites.emit(this.favorites);
+  @Output() removeFavoriteProduct = new EventEmitter<Product>();
+  @Output() addFavoriteProduct = new EventEmitter<Product>();
+
+
+  public addFavorite(product: Product) {
+    this.addFavoriteProduct.emit(product);
   }
 
-  public removeFavoriteProduct(product: Product) {
-    this.favorites.splice(this.favorites.indexOf(product), 1);
-    this.updateFavorites.emit(this.favorites);
-  }
-
-  public isFavorite(product: Product) {
-    return this.favorites.includes(product);
+  public removeFavorite(product: Product) {
+    this.removeFavoriteProduct.emit(product);
   }
 
 }

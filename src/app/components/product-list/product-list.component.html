@@ -1,12 +1,14 @@
 <ul class="product-list">
   <app-product-list-item
-    [products]=favorites
-    [favorites]=favorites
-    (updateFavorites)="updateFavoritesAndProducts($event)">
+    *ngFor="let product of favorites"
+    [product]=product
+    [isFavorite]=true
+    (removeFavoriteProduct)="removeFavoriteAndRefreshList($event)">
   </app-product-list-item>
 
   <app-product-list-item
-    [products]=filteredProducts
-    (updateFavorites)="updateFavoritesAndProducts($event)">
+    *ngFor="let product of filteredProducts"
+    [product]=product
+    (addFavoriteProduct)="addFavoriteAndRefreshList($event)">
   </app-product-list-item>
 </ul>
